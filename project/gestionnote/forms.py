@@ -3,24 +3,26 @@ from django.utils.translation import gettext_lazy as _
 from . import models
 from django import forms
 
-class ExamensForm(ModelForm):
+class examensForm(ModelForm):
     class Meta:
-        model = models.Examens
-        fields = ('titre', 'date', 'coefficient')
+        model = models.examens
+        fields = ('id','titre', 'date', 'coefficient')
         labels = {
+            'id' : _('id'),
             'titre' : _('Titre'),
             'date' : _('date') ,
             'coefficient' : _('coefficient'),
         }    
 
 
-class EtudiantForm(ModelForm):
+class etudiantsForm(ModelForm):
     class Meta:
-        model = models.Etudiant
-        fields = ('nom', 'prénom', 'groupe', 'photo', 'email')
+        model = models.etudiants
+        fields = ('Netudiant','nom', 'prenom', 'groupe', 'photo', 'email')
         labels = {
+            'Netudiant': _('Netudiant'),
             'nom': _('Nom'),
-            'prénom': _('Prénom'),
+            'prenom': _('Prenom'),
             'groupe': _('Groupe'),
             'photo': _('Photo'),
             'email': _('Email')
@@ -31,13 +33,14 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-class EnseignantForm(ModelForm):
+class enseignantsForm(ModelForm):
     class Meta:
         model = models.Enseignant
-        fields = ('nom', 'prénom')
+        fields = ('id','nom', 'prenom')
         labels = {
+            'id': _('id'),
             'nom' : _('nom'),
-            'prénom' : _('prénom'),
+            'prenom' : _('prenom'),
         }       
         
 
@@ -45,8 +48,9 @@ class EnseignantForm(ModelForm):
 class RuniteForm(ModelForm):
     class Meta:
         model = models.Runite
-        fields = ['nom', 'descriptif', 'coefficient']
+        fields = ['code_ressource','nom', 'descriptif', 'coefficient']
         labels = {
+            'code_ressource': _('code_ressource'),
             'nom': _('Nom'),
             'descriptif': _('Descriptif'),
             'coefficient': _('Coefficient'),
@@ -57,11 +61,12 @@ class RuniteForm(ModelForm):
 class UniteForm(ModelForm):
     class Meta:
         model = models.Unite
-        fields = ['Nom', 'semestre', 'crédit_ECTS']
+        fields = ['code','Nom', 'semestre', 'credit_ECTS']
         labels = {
+            'code': _('code'),
             'Nom': _('Nom'),
             'semestre': _('semestre'),
-            'crédit_ECTS': _('crédit ECTS'),
+            'credit_ECTS': _('credit ECTS'),
 
         }
             
@@ -70,10 +75,10 @@ class UniteForm(ModelForm):
 class NoteForm(ModelForm):
     class Meta:
         model = models.Note
-        fields = ('examens', 'etudiant', 'note', 'appréciation')
+        fields = ('examen', 'etudiant', 'note', 'appreciation')
         labels = {
-            'examens' : _('Examens'),
-            'etudiant' : _('Etudiant'),
-            'note' : _('Note'),
-            'appréciation' : _('appréciation'),
+            'examen' : _('examen'),
+            'etudiant' : _('etudiant'),
+            'note' : _('note'),
+            'appreciation' : _('appreciation'),
         }       
