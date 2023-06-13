@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .forms import ExamensForm , LoginForm , EtudiantForm , RuniteForm, UniteForm, NoteForm , EnseignantForm
+from .forms import examensForm , LoginForm , etudiantsForm , RuniteForm, UniteForm, NoteForm , enseignantsForm
 from . import models
 from django.shortcuts import get_object_or_404
 
@@ -37,12 +37,12 @@ def login(request):
 
 def ajout(request):
     
-        form = ExamensForm()
+        form = examensForm()
         return render(request, 'gestionnote/ajout.html', {'form': form})
 
 
 def traitement(request):
-    lform = ExamensForm(request.POST)
+    lform = examensForm(request.POST)
     if lform.is_valid():
         examens = lform.save()
         return render(request, 'gestionnote/affiche.html', {'examens': examens})
@@ -52,18 +52,18 @@ def traitement(request):
     
     
 def all(request):
-    examenss = list(models.Examens.objects.all())
-    etudiants = list(models.Etudiant.objects.all())
+    examenss = list(models.examens.objects.all())
+    etudiants = list(models.etudiants.objects.all())
     return render(request, 'gestionnote/all.html', {'examenss': examenss,'etudiant': etudiants})
     
 
 
 def read(request,id):
-    examens = models.Examens.objects.get(pk=id)
+    examens = models.examens.objects.get(pk=id)
     return render(request, 'gestionnote/affiche.html', {'examens': examens})
 
 def traitementupdate(request, id):
-    lform = ExamensForm(request.POST)
+    lform = examensForm(request.POST)
     if lform.is_valid():
         
         examens = lform.save(commit=False)
@@ -77,8 +77,8 @@ def traitementupdate(request, id):
 
 
 def update(request, id):
-    examens = get_object_or_404(models.Examens, pk=id)
-    form = ExamensForm(instance=examens)
+    examens = get_object_or_404(models.examens, pk=id)
+    form = examensForm(instance=examens)
     """
     if request.method == 'POST':
         form = LivreForm(instance=livre)
@@ -89,7 +89,7 @@ def update(request, id):
     return render(request, 'gestionnote/update.html', {'form': form, 'id': id})
 
 def delete(request, id):
-    examens = get_object_or_404(models.Examens, pk=id)
+    examens = get_object_or_404(models.examens, pk=id)
     examens.delete()
     return HttpResponseRedirect("/gestionnote/all/")
 
@@ -100,19 +100,19 @@ def delete(request, id):
 def ajoutenseignant(request):
     if request.method == "POST":
         
-        form = EnseignantForm(request)
+        form = enseignantsForm(request)
         if form.is_valid():
             enseignant = form.save()
             return render(request, 'gestionnote/affiche.html', {'enseignant': enseignant})
         else:
             return render(request, 'gestionnote/ajoutenseignant.html', {'form': form})
     else:
-        form = EnseignantForm()
+        form = enseignantsForm()
         return render(request, 'gestionnote/ajoutenseignant.html', {'form': form})
 
 
 def traitementenseignant(request):
-    lform = EnseignantForm(request.POST)
+    lform = enseignantsForm(request.POST)
     if lform.is_valid():
         enseignant = lform.save()
         return render(request, 'gestionnote/affiche.html', {'enseignant': enseignant})
@@ -121,16 +121,16 @@ def traitementenseignant(request):
     
     
 def allenseignant(request):
-    enseignants = list(models.Enseignant.objects.all())
+    enseignants = list(models.enseignants.objects.all())
     return render(request, 'gestionnote/all.html', {'enseignants': enseignants})
 
 
 def readenseignant(request,id):
-    enseignant = models.Enseignant.objects.get(pk=id)
+    enseignant = models.enseignants.objects.get(pk=id)
     return render(request, 'gestionnote/affiche.html', {'enseignant': enseignant})
 
 def traitementupdateenseignant(request, id):
-    lform = EnseignantForm(request.POST)
+    lform = enseignantsForm(request.POST)
     if lform.is_valid():
         
         enseignant = lform.save(commit=False)
@@ -144,8 +144,8 @@ def traitementupdateenseignant(request, id):
 
 
 def updateenseignant(request, id):
-    enseignant = get_object_or_404(models.Enseignant, pk=id)
-    form = EnseignantForm(instance=enseignant)
+    enseignant = get_object_or_404(models.enseignants, pk=id)
+    form = enseignantsForm(instance=enseignant)
     """
     if request.method == 'POST':
         form = LivreForm(instance=livre)
@@ -156,7 +156,7 @@ def updateenseignant(request, id):
     return render(request, 'gestionnote/update.html', {'form': form, 'id': id})
 
 def deleteenseignant(request, id):
-    enseignant = get_object_or_404(models.Enseignant, pk=id)
+    enseignant = get_object_or_404(models.enseignant, pk=id)
     enseignant.delete()
     return HttpResponseRedirect("/gestionnote/all/")
 
@@ -169,19 +169,19 @@ def deleteenseignant(request, id):
 def ajoutetudiant(request):
     if request.method == "POST":
         
-        form = EtudiantForm(request)
+        form = etudiantsForm(request)
         if form.is_valid():
             etudiant = form.save()
             return render(request, 'gestionnote/afficheetudiant.html', {'etudiant': etudiant})
         else:
             return render(request, 'gestionnote/ajoutetudiant.html', {'form': form})
     else:
-        form = EtudiantForm()
+        form = etudiantsForm()
         return render(request, 'gestionnote/ajoutetudiant.html', {'form': form})
 
 
 def traitementetudiant(request):
-    lform = EtudiantForm(request.POST)
+    lform = etudiantsForm(request.POST)
     if lform.is_valid():
         etudiant = lform.save()
         return render(request, 'gestionnote/afficheetudiant.html', {'etudiant': etudiant})
@@ -189,16 +189,16 @@ def traitementetudiant(request):
         return render(request, 'gestionnote/ajoutetudiant.html', {'form': lform})
     
 def alletudiant(request):
-    etudiants = list(models.Etudiant.objects.all())
+    etudiants = list(models.etudiants.objects.all())
     return render(request, 'gestionnote/all.html', {'etudiants': etudiants})
 
 
 def readetudiant(request,id):
-    etudiant = models.Etudiant.objects.get(pk=id)
+    etudiant = models.etudiants.objects.get(pk=id)
     return render(request, 'gestionnote/afficheetudiant.html', {'etudiant': etudiant})
 
 def traitementupdateetudiant(request, id):
-    lform = EtudiantForm(request.POST)
+    lform = etudiantsForm(request.POST)
     if lform.is_valid():
         
         etudiant = lform.save(commit=False)
@@ -212,8 +212,8 @@ def traitementupdateetudiant(request, id):
 
 
 def updateetudiant(request, id):
-    etudiant = get_object_or_404(models.Etudiant, pk=id)
-    form = EtudiantForm(instance=etudiant)
+    etudiant = get_object_or_404(models.etudiants, pk=id)
+    form = etudiantsForm(instance=etudiant)
     """
     if request.method == 'POST':
         form = LivreForm(instance=livre)
@@ -224,7 +224,7 @@ def updateetudiant(request, id):
     return render(request, 'gestionnote/updateetudiant.html', {'form': form, 'id': id})
 
 def deleteetudiant(request, id):
-    etudiant = get_object_or_404(models.Etudiant, pk=id)
+    etudiant = get_object_or_404(models.etudiants, pk=id)
     etudiant.delete()
     return HttpResponseRedirect("/gestionnote/all/")
 
