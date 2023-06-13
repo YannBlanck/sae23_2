@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> {% block title %}
+    Gestionnaire de note
+    {% endblock %}
+  </title>
+  <link rel="stylesheet" type="text/css" href="{% static 'gestionnote/styles.css' %}">
+</head>
+<body>
+    <h1>Bienvenue sur votre Gestionnaire de notes</h1>
+    
+  <div id="navbar">
+    <ul>
+      <li>
+        <a href="/gestionnote/">
+          <img src="{% static 'image/text.png' %}" alt="Home" style="width: 200px; height: 150px;">
+        </a>
+      </li>
+      
+      
+      <li><a href="/gestionnote/allenseignant/">Enseignant</a></li>
+      <li><a href="/gestionnote/alletudiant">Etudiant</a></li>
+      <li><a href="/gestionnote/all">Examens</a></li>
+      <li><a href="/gestionnote/allrunite">Ressources</a></li>
+      <li><a href="/gestionnote/allunite">Unitée d'enseignement</a></li>
+      <li><a href="/gestionnote/allnote">note</a></li>
+    </ul>
+  </div>
+
+  {% block content %}
+  <h1 class="title">Hover over the cards</h1>
+
+  <a href="/gestionnote/ajoutenseignant/" class="card-wrap">
+    <div class="card">
+      <div class="card-bg" style="background-image: url('/static/image/text.png')"></div>
+      <div class="card-info">
+        <h1>Enseignant</h1>
+      </div>
+    </div>
+  </a>
+  
+  <a href="/gestionnote/ajoutetudiant" class="card-wrap">
+    <div class="card">
+      <div class="card-bg" style="background-image: url('/static/image/text.png')"></div>
+      <div class="card-info">
+        <h1>Etudiant</h1>
+      </div>
+    </div>
+  </a>
+  
+  <a href="/gestionnote/ajout" class="card-wrap">
+    <div class="card">
+      <div class="card-bg" style="background-image: url('/static/image/text.png')"></div>
+      <div class="card-info">
+        <h1>Examens</h1>
+      </div>
+    </div>
+  </a>
+  
+  <a href="/gestionnote/ajoutrunite" class="card-wrap">
+    <div class="card">
+      <div class="card-bg" style="background-image: url('/static/image/text.png')"></div>
+      <div class="card-info">
+        <h1>Ressources</h1>
+      </div>
+    </div>
+  </a>
+  
+  <a href="/gestionnote/ajoutunite" class="card-wrap">
+    <div class="card">
+      <div class="card-bg" style="background-image: url('/static/image/text.png')"></div>
+      <div class="card-info">
+        <h1>Unitée d'enseignement</h1>
+      </div>
+    </div>
+  </a>
+  
+  <a href="/gestionnote/ajoutnote" class="card-wrap">
+    <div class="card">
+      <div class="card-bg" style="background-image: url('/static/image/text.png')"></div>
+      <div class="card-info">
+        <h1>note</h1>
+      </div>
+    </div>
+  </a>
+  
+  {% endblock %}
+</body>
+</html>

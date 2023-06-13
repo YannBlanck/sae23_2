@@ -1,0 +1,12 @@
+{% extends 'gestionnote/main.html' %}
+{% block title %}
+Ajout d'unité d'enseignement 
+{% endblock %}
+
+{% block content %}
+    <form method="post" action="/gestionnote/traitementunite/">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type="submit" value="Envoyer les données">
+    </form>
+{% endblock %}

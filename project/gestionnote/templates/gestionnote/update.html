@@ -1,0 +1,12 @@
+{% extends 'gestionnote/main.html' %}
+{% block title %}
+update
+{% endblock %}
+
+
+{% block content %}
+    <form method="post" action="/gestionnote/traitementupdate/{{id}}">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <input type="submit" value="envoyer les données" />
+{% endblock %}

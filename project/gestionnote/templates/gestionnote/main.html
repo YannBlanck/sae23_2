@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> {% block title %}
+    Gestionnaire de note
+    {% endblock %}
+  </title>
+  <link rel="stylesheet" type="text/css" href="{% static 'gestionnote/styles.css' %}">
+</head>
+<body>
+    <h1>Bienvenue sur votre Gestionnaire de notes</h1>
+    
+  <div id="navbar">
+    <ul>
+      <li><a href="/gestionnote/">
+        <img src="{% static 'image/home.png' %}" alt="Home">
+      </a>
+      
+      <li><a href="/gestionnote/allenseignant/">Enseignant</a></li>
+      <li><a href="/gestionnote/alletudiant">Etudiant</a></li>
+      <li><a href="/gestionnote/all">Examens</a></li>
+      <li><a href="/gestionnote/allrunite">Ressources</a></li>
+      <li><a href="/gestionnote/allunite">Unitée d'enseignement</a></li>
+      <li><a href="/gestionnote/allnote">note</a></li>
+    </ul>
+  </div>
+
+  {% block content %}
+  <a href="/gestionnote/allenseignant/">Enseignant</a>
+  <a href="/gestionnote/alletudiant">Etudiant</a>
+  <a href="/gestionnote/ajout">Examens</a>
+  <a href="/gestionnote/allrunite">Ressources</a>
+  <a href="/gestionnote/allunite">Unitée d'enseignement</a>
+  <a href="/gestionnote/allnote">note</a>
+
+
+  {% endblock %}
+</body>
+</html>
