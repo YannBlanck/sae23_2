@@ -3,7 +3,7 @@ from django.db import models
 
 class examens(models.Model):
 
-    id = models.models.IntegerField(primary_key = True)
+    id = models.IntegerField(primary_key = True)
 
     titre = models.CharField(max_length=100)
     date = models.DateField(max_length=10)
@@ -21,7 +21,7 @@ class Login(models.Model):
 
 class enseignants(models.Model): #déclare la classe Livre héritant de la classe Model, classe de base des modèles
     
-    id = models.models.IntegerField(primary_key = True)
+    id = models.IntegerField(primary_key = True)
 
     nom = models.CharField(max_length=50) # défini un champs de type texte de 100 caractères maximum
     
@@ -38,7 +38,7 @@ class enseignants(models.Model): #déclare la classe Livre héritant de la class
 
 class etudiants(models.Model): #déclare la classe Livre héritant de la classe Model, classe de base des modèles
     
-    Netudiant = models.models.IntegerField(primary_key = True)
+    Netudiant = models.IntegerField(primary_key = True)
 
     nom = models.CharField(max_length=50) # défini un champs de type texte de 100 caractères maximum
     
@@ -61,7 +61,7 @@ class etudiants(models.Model): #déclare la classe Livre héritant de la classe 
 
 class Runite(models.Model): #déclare la classe Livre héritant de la classe Model, classe de base des modèles
     
-    code_ressource = models.models.CharField(max_length=50, primary_key = True)
+    code_ressource = models.CharField(max_length=50, primary_key = True)
 
     nom = models.CharField(max_length=100) # défini un champs de type texte de 100 caractères maximum
     
@@ -69,7 +69,7 @@ class Runite(models.Model): #déclare la classe Livre héritant de la classe Mod
 
     coefficient = models.IntegerField(blank=True, null = True)
     
-    examen = models.models.ForeignKey("Examens.id", on_delete=models.CASCADE)
+    examen = models.ForeignKey("Examens.id", on_delete=models.CASCADE)
 
     def __str__(self):
         chaine = f"{self.code_ressource} nom {self.nom} descriptif {self.descriptif} coefficient {self.coefficient} examen {self.examen}"
@@ -83,7 +83,7 @@ class Runite(models.Model): #déclare la classe Livre héritant de la classe Mod
 
 class Unite(models.Model): #déclare la classe Livre héritant de la classe Model, classe de base des modèles
     
-    code = models.models.CharField(max_length=50, primary_key = True)
+    code = models.CharField(max_length=50, primary_key = True)
 
     Nom = models.CharField(max_length=50) # défini un champs de type texte de 100 caractères maximum
     
@@ -106,9 +106,9 @@ class Note(models.Model): #déclare la classe Livre héritant de la classe Model
     #!!!!!!!!!!! note est un float et appreciation est un varchar(ou charfield)
 
     #examen est a changer par : examen = models.models.ForeignKey("Examens", on_delete=models.CASCADE)
-    examen = models.models.ForeignKey("Examens", on_delete=models.CASCADE)
+    examen = models.ForeignKey("Examens", on_delete=models.CASCADE)
     
-    etudiant = models.models.ForeignKey("Etudiant.Netudiant", on_delete=models.CASCADE)
+    etudiant = models.ForeignKey("Etudiant.Netudiant", on_delete=models.CASCADE)
     #etudiant = models.CharField(max_length = 50)
     
     note = models.FloatField(blank=False, max_length = 4) # champs de type date, pouvant être null ou ne pas être rempli
